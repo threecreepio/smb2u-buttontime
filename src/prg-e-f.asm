@@ -450,9 +450,16 @@ DisplayLevelTitleCardText:
 	STA TitleCard_World
 
 	; Extra Life number
-	LDY ExtraLives
-	DEY
-	TYA
+	ldy #$F3
+	sty TitleCard_Lives - 1
+	lda $7E02
+	sbc $7E01
+	bpl @Positive
+	ldy #$FA
+	sty TitleCard_Lives - 1
+	eor #$FF
+	adc #1
+@Positive:
 	JSR GetTwoDigitNumberTiles
 	STY TitleCard_Lives
 	STA TitleCard_Lives + 1
@@ -2489,7 +2496,6 @@ ResetPPUAddress:
 	STA PPUADDR
 	STA PPUADDR
 	RTS
-
 
 DoSoundProcessing:
 	LDA #PRGBank_4_5

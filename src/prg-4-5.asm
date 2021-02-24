@@ -12,7 +12,34 @@
 ;   - Instrument tables and data
 ;
 
+TPOFrame:
+	jsr TPOStoreJoypad
+	jsr TPOCheckAreaLoaded
+	rts
+
+TPOCheckAreaLoaded:
+	lda AreaInitialized
+	cmp $7E00
+	beq @Done
+	sta $7E00
+	lda $10
+	sta $7E02
+@Done:
+	rts
+
+
+TPOStoreJoypad:
+	lda Player1JoypadPress
+	and #%01000000
+	beq @Done
+	lda $10
+	sta $7E01
+	inc $7E01
+@Done:
+	rts
+
 StartProcessingSoundQueue:
+	jsr TPOFrame
 	LDA #$FF
 	STA JOY2
 	LDA StackArea

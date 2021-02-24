@@ -676,8 +676,8 @@ TitleCardText:
 	.db $FB, $F0, $E8, $EB, $E5, $DD, $FB, $FB, $D1, $F3, $D1
 	; EXTRA LIFE...  0
 	.db $23, $48, $10
-	.db $DE, $F1, $ED, $EB, $DA, $FB, $E5, $E2, $DF, $DE
-	.db $F9, $F9, $F9, $FB, $FB, $D0
+	.db $DB, $EE, $ED, $ED, $E8, $E7, $FA, $ED, $E2, $E6
+	.db $DE, $F9, $F9, $FB, $FB, $D0
 	.db $00
 
 Text_WARP:
